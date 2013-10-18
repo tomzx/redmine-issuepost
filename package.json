@@ -1,0 +1,13 @@
+{
+  "name": "test",
+  "window": {
+    "width": 600,
+    "height": 350,
+    "toolbar": true,
+    "frame": true
+  },
+  "main": "index.html",
+  "dependencies": {
+    "lodash": "~2.2.1"
+  }
+}

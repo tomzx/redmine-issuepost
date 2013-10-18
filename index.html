@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Redmine Quick Post</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/chosen.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/application.css">
+</head>
+<body>
+	<form id="main-form" action="" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-12">
+				<select id="project_id" name="project_id" class="form-control" placeholder="project" data-chosen></select>
+			</div>
+			<div class="col-sm-12">
+				<select id="tracker_id" name="issue[tracker_id]" class="form-control" placeholder="tracker" data-chosen></select>
+			</div>
+			<div class="col-sm-12">
+				<input type="text" id="subject" name="issue[subject]" class="form-control" placeholder="subject">
+			</div>
+			<div class="col-sm-12">
+				<textarea id="description" name="issue[description]" class="form-control" placeholder="description" cols="30" rows="5"></textarea>
+			</div>
+			<div class="col-sm-12 text-center">
+				<button class="btn btn-default" type="submit">Submit</button>
+			</div>
+		</div>
+	</form>
+
+	<div id="message"></div>
+
+	<span class="glyphicon glyphicon-wrench"></span>
+
+	<div id="debug"></div>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/chosen.jquery.js"></script>
+	<script src="assets/js/bootstrap.js"></script>
+	<script src="assets/js/config.js"></script>
+	<script src="assets/js/application.js"></script>
+</body>
+</html>
