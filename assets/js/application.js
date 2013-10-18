@@ -68,7 +68,6 @@ var submit_issue = function(project_id, tracker_id, subject, description) {
 }
 
 $(document).ready(function() {
-	var x= lodash.first([1,2,3,4]);
 	fetch_projects();
 
 	$('select[data-chosen]').chosen();
