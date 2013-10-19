@@ -3,7 +3,7 @@
 // TODO: Support pagination
 
 if (typeof require === 'function') {
-	var lodash = require('lodash')
+	var lodash = require('lodash');
 }
 
 var projects = [];
@@ -67,7 +67,7 @@ var submit_issue = function(project_id, tracker_id, subject, description) {
 	}).fail(function() {
 		$('#message').addClass('alert alert-danger').html('Error T_T');
 	});
-}
+};
 
 $(document).ready(function() {
 	fetch_projects();
@@ -77,10 +77,10 @@ $(document).ready(function() {
 	$('#main-form').submit(function(event) {
 		event.preventDefault();
 
-		project_id = parseInt($('#project_id').val(), 10);
-		tracker_id = parseInt($('#tracker_id').val(), 10);
-		subject = $('#subject').val();
-		description = $('#description').val();
+		var project_id = parseInt($('#project_id').val(), 10);
+		var tracker_id = parseInt($('#tracker_id').val(), 10);
+		var subject = $('#subject').val();
+		var description = $('#description').val();
 		submit_issue(project_id, tracker_id, subject, description);
 	});
 
