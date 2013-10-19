@@ -15,22 +15,7 @@ module.exports = function(grunt) {
 					src: ['application.less'],
 					ext: '.css'
 				}],
-				// files: {
-				// 	'path/to/result.css': 'path/to/source.less'
-				// }
 			},
-			// production: {
-			// 	options: {
-			// 		yuicompress: true
-			// 	},
-			// 	files: [{
-			// 		expand: true,
-			// 		cwd: 'Source/asset/less',
-			// 		dest: 'Source/asset/css',
-			// 		src: ['style.less'],
-			// 		ext: '.css'
-			// 	}],
-			// }
 		},
 	});
 
