@@ -5,12 +5,19 @@ Redmine Issue Post is greatly inspired on [IssuePost][1] for [github][2]. In thi
 
 This was developed because we wanted to make better use of redmine and we felt that entering bugs was slowing us down. Thus, we needed a way to rapidly enter those bugs so that instead of forgetting about them, we'd enter them in our cherished redmine.
 
+Install steps
+-------------
+
+* Run `npm install`
+* Run `npm start` to execute/start Redmine Issue Post
+
 License
 -------
 
-The code is licensed under the MIT license (http://opensource.org/licenses/MIT). See license.txt.
+The code is licensed under the [MIT license][4]. See license.txt.
 
 
   [1]: http://issuepostapp.com/
   [2]: http://www.github.com
   [3]: http://www.redmine.org
+  [4]: http://opensource.org/licenses/MIT
