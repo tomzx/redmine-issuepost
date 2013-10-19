@@ -2,7 +2,9 @@
 // TODO: Caching for most remote data (prepopulate on first connect then update every X or forced)
 // TODO: Support pagination
 
-var lodash = require('lodash')
+if (typeof require === 'function') {
+	var lodash = require('lodash')
+}
 
 var projects = [];
 var fetch_projects = function() {
