@@ -1,0 +1,57 @@
+@import "bootstrap/bootstrap.less";
+
+@lightgray: #F0F0F0;
+
+body {
+	font-family: sans-serif, serif, monospace;
+}
+
+textarea {
+	resize: none;
+}
+
+.form-horizontal .form-group {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+
+	.chosen-container-single .chosen-single {
+		border: none;
+		background: #FFF;
+	}
+
+	.chosen-container-active .chosen-single {
+		background: @lightgray;
+		box-shadow: none;
+	}
+}
+
+.col-sm-12 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.form-control {
+	border: none;
+	-webkit-box-shadow: none;
+		box-shadow: none;
+	-webkit-transition: none;
+		transition: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+	background: @lightgray;
+}
+
+.form-control:focus {
+	outline: 0;
+	-webkit-box-shadow: none;
+		box-shadow: none;
+}
+
+.submit-container {
+	padding-right: 5px;
+}
