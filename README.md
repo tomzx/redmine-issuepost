@@ -9,6 +9,7 @@ Install steps
 -------------
 
 * Run `npm install`
+* Rename `js/config.js.dist` to `js/config.js` and specify the URL to your redmine website as well as your redmine api key (which you can find by going to `My account` and then on the right under `API access key`, click Show).
 * Run `npm start` to execute/start Redmine Issue Post
 
 License
