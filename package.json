@@ -1,10 +1,28 @@
 {
-  "name": "test",
+  "name": "redmine-issuepost",
+  "version": "0.1.0",
+  "description": "Redmine issue posting client on node-webkit.",
+  "tags": ["redmine", "node-webkit"],
+  "keywords": ["redmine", "rest api", "issue post"],
+  "author": "Tom Rochette <roctom@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomzx/redmine-issuepost.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tomzx/redmine-issuepost/issues"
+  },
+  "license": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/tomzx/redmine-issuepost/blob/master/license.txt"
+    }
+  ],
   "window": {
-    "width": 600,
-    "height": 350,
-    "toolbar": true,
-    "frame": true
+    "width": 500,
+    "height": 230,
+    "toolbar": false,
+    "frame": false
   },
   "main": "index.html",
   "scripts": {
@@ -13,5 +31,10 @@
   "dependencies": {
     "lodash": "~2.2.1",
     "nodewebkit": "~0.7.5-3"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-less": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3"
   }
 }
