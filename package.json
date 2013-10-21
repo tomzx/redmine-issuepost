@@ -20,9 +20,10 @@
   ],
   "window": {
     "width": 500,
-    "height": 230,
-    "toolbar": false,
-    "frame": false
+    "height": 240,
+    "toolbar": true,
+    "frame": true,
+    "resizable": false
   },
   "main": "index.html",
   "scripts": {
