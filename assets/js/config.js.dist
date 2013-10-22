@@ -1,2 +1,0 @@
-var redmine_site = 'https://www.redmine.org'; // Redmine url
-var redmine_key = ''; // Redmine API key
