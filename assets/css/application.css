@@ -5994,11 +5994,20 @@ textarea {
   resize: none;
   max-height: 125px;
 }
+label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 footer {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  -webkit-app-region: drag;
   padding: 5px 10px;
   color: #bbb;
   border-top: 1px solid #bbb;
@@ -6008,6 +6017,12 @@ footer {
   background-image: -webkit-linear-gradient(bottom, #e8e8e8 23%, #eeeeee 62%, #ffffff 81%);
   background-image: -ms-linear-gradient(bottom, #e8e8e8 23%, #eeeeee 62%, #ffffff 81%);
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.23, #e8e8e8), color-stop(0.62, #eeeeee), color-stop(0.81, #ffffff));
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 footer a:link,
 footer a:visited {
