@@ -6001,6 +6001,7 @@ label {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  cursor: default;
 }
 footer {
   position: fixed;
@@ -6023,6 +6024,7 @@ footer {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  cursor: default;
 }
 footer a:link,
 footer a:visited {
