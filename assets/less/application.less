@@ -2,6 +2,42 @@
 
 @lightgray: #F0F0F0;
 
+//==============================================================================
+// Helpers
+//==============================================================================
+
+#helpers {
+	.gradient() {
+		background-image: linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
+		background-image: -o-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
+		background-image: -moz-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
+		background-image: -webkit-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
+		background-image: -ms-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
+		background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0.23, rgb(232,232,232)),
+			color-stop(0.62, rgb(238,238,238)),
+			color-stop(0.81, rgb(255,255,255))
+		);
+	}
+
+	.no-select() {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: default;
+	}
+}
+
+//==============================================================================
+// Main Styles
+//==============================================================================
+
 html, body {
 	overflow: hidden;
 }
@@ -11,19 +47,7 @@ html, body {
 }
 
 .input-group-addon {
-	background-image: linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -o-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -moz-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -webkit-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -ms-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.23, rgb(232,232,232)),
-		color-stop(0.62, rgb(238,238,238)),
-		color-stop(0.81, rgb(255,255,255))
-	);
+	#helpers > .gradient();
 }
 
 body {
@@ -44,27 +68,21 @@ textarea {
 	max-height: 125px;
 }
 
+label {
+	#helpers > .no-select();
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
+	-webkit-app-region: drag;
 	padding: 5px 10px;
 	color: #bbb;
 	border-top: 1px solid #bbb;
-	background-image: linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -o-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -moz-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -webkit-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -ms-linear-gradient(bottom, rgb(232,232,232) 23%, rgb(238,238,238) 62%, rgb(255,255,255) 81%);
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.23, rgb(232,232,232)),
-		color-stop(0.62, rgb(238,238,238)),
-		color-stop(0.81, rgb(255,255,255))
-	);
+	#helpers > .gradient();
+	#helpers > .no-select();
 
 	a:link, a:visited {
 		color: #bbb;
