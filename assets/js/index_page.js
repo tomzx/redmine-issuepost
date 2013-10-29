@@ -77,7 +77,13 @@ $(document).ready(function() {
 	});
 
 	// Autogrow textarea
-	$('textarea').autogrow();
+	$('textarea').autogrow({
+		update: function() {
+			if (in_node_webkit) {
+				gui.Window.get().height = $('body').height() + $('footer').outerHeight() + 10;
+			}
+		}
+	});
 
 	// Blur
 	/*if (in_node_webkit) {
@@ -98,11 +104,12 @@ $(document).ready(function() {
 	 */
 	$.fn.autogrow = function(options)
 	{
-		return this.filter('textarea').each(function(options) {
+		return this.filter('textarea').each(function() {
 			var self         = this;
 			var $self        = $(self);
 			var minHeight    = $self.height();
 			var noFlickerPad = $self.hasClass('autogrow-short') ? 0 : parseInt($self.css('lineHeight')) || 0;
+			var onUpdate     = options['update'] || (function() {});
 
 			var shadow = $('<div></div>').css({
 				position:    'absolute',
@@ -140,6 +147,8 @@ $(document).ready(function() {
 				shadow.css('width', $self.width());
 				shadow.html(val + (noFlickerPad === 0 ? '...' : '')); // Append '...' to resize pre-emptively.
 				$self.height(Math.max(shadow.height() + noFlickerPad, minHeight));
+
+				onUpdate();
 			}
 
 			$self.change(update).keyup(update).keydown({event:'keydown'},update);
