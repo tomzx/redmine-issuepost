@@ -15,22 +15,20 @@ $(document).ready(function() {
 
 	application.fetch_projects();
 
-	$('select[data-chosen]').chosen();
-
 	$('#main-form').submit(function(event) {
 		event.preventDefault();
 
-		var project_id = parseInt($('#project_id').val(), 10);
-		var tracker_id = parseInt($('#tracker_id').val(), 10);
+		var project = application.find_project_from_name($('#project').val());
+		var tracker = application.find_tracker_from_name($('#tracker').val());
 		var subject = $('#subject').val();
 		var description = $('#description').val();
-		application.submit_issue(project_id, tracker_id, subject, description);
+		application.submit_issue(project, tracker, subject, description);
 	});
 
-	$('#project_id').change(function() {
+	$('#project').blur(function() {
 		var $this = $(this);
 
-		var project = lodash.find(projects, { 'id': parseInt($this.val(), 10) });
+		var project = application.find_project_from_name($this.val());
 
 		if (project !== null) {
 			application.fetch_project_tracker(project.identifier);
@@ -45,8 +43,8 @@ $(document).ready(function() {
 					width: 500,
 					height: 100,
 					resizable: false,
-					toolbar: true,
-					frame: true,
+					toolbar: false,
+					frame: false,
 				});
 
 				configuration_window.on('closed', function() {
@@ -63,7 +61,9 @@ $(document).ready(function() {
 
 	// cmd + enter = submit
 	$('form').keydown(function(event) {
-		if (event.keyCode === 13 && event.metaKey) {
+		var windowsCommand = event.keyCode === 13 && event.ctrlKey;
+		var macCommand = event.keyCode === 13 && event.metaKey;
+		if (windowsCommand || macCommand) {
 			$(this).submit();
 			return false;
 		}

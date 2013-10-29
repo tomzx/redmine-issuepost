@@ -17,6 +17,8 @@ Application.prototype.refresh_config = function() {
 };
 
 Application.prototype.fetch_projects = function() {
+	var self = this;
+
 	console.log('Fetching projects');
 	$.ajax({
 		url: this.redmine_site+'/projects.json',
@@ -25,22 +27,27 @@ Application.prototype.fetch_projects = function() {
 			limit: 100,
 		}
 	}).done(function(data) {
-		var $select = $('#project_id');
+		self.projects = data.projects;
+		console.debug(self.projects);
 
-		$select.empty().append($('<option>'));
+		self.on_project_fetched();
+	});
+};
 
-		$.each(data.projects, function() {
-			$select.append($('<option>', { value: this.id }).text(this.name));
-		});
+// TODO: Use jQuery on/trigger mecanism
+Application.prototype.on_project_fetched = function() {
+	var projects = $.map(this.projects, function(item) {
+		return item.name;
+	});
 
-		$select.trigger('chosen:updated');
-
-		this.projects = data.projects;
-		console.debug(this.projects);
+	$('#project').inlineComplete({
+		terms: projects
 	});
 };
 
 Application.prototype.fetch_project_tracker = function(identifier) {
+	var self = this;
+
 	console.log('Fetching project trackers');
 	$.ajax({
 		url: this.redmine_site+'/projects/'+identifier+'.json',
@@ -49,32 +56,40 @@ Application.prototype.fetch_project_tracker = function(identifier) {
 			include: 'trackers'
 		}
 	}).done(function(data) {
-		var $select = $('#tracker_id');
+		self.trackers = data.project.trackers;
+		console.info(self.trackers);
 
-		$select.empty().append($('<option>'));
-
-		$.each(data.project.trackers, function() {
-			$select.append($('<option>', { value: this.id }).text(this.name));
-		});
-
-		$select.trigger('chosen:updated');
-
-		this.trackers = data.project.trackers;
-		console.info(this.trackers);
+		self.on_project_tracker_fetched();
 	});
 };
 
-Application.prototype.submit_issue = function(project_id, tracker_id, subject, description) {
+// TODO: Use jQuery on/trigger mecanism
+Application.prototype.on_project_tracker_fetched = function() {
+	var trackers = $.map(this.trackers, function(item) {
+		return item.name;
+	});
+
+	$('#tracker').inlineComplete({
+		terms: trackers
+	});
+};
+
+Application.prototype.submit_issue = function(project, tracker, subject, description) {
 	console.log('Submitting new issue');
 
 	var issue = {
-		project_id: project_id,
-		tracker_id: tracker_id,
+		project_id: project.id,
+		tracker_id: tracker.id,
 		subject: subject,
 		description: description,
 	};
 
 	console.log(issue);
+
+	if (isNaN(issue.project_id) || isNaN(issue.tracker_id)) {
+		console.error('Cannot submit issue with no project_id or tracker_id');
+		return;
+	}
 
 	$('#pin').addClass('hidden');
 	$('#loading').removeClass('hidden');
@@ -88,16 +103,26 @@ Application.prototype.submit_issue = function(project_id, tracker_id, subject, d
 		}
 	}).done(function() {
 		console.log('Issue successfully submitted!');
-		//$('#message').addClass('alert alert-success').html('Success :D');
 
 		if (event.keyCode === 27 && in_node_webkit) {
 			gui.Window.get().show();
 		}
+		// TODO: Move this out of application?
+		$('#subject').val('');
+		$('#description').val('');
 	}).fail(function() {
-		console.warn('There was an error while submitting the issue');
+		console.error('There was an error while submitting the issue');
 		$('#message').addClass('alert alert-danger').html('Error T_T');
 	}).complete(function() {
 		$('#loading').addClass('hidden');
 		$('#pin').removeClass('hidden');
 	});
 };
+
+Application.prototype.find_project_from_name = function(name) {
+	return lodash.find(this.projects, { 'name': name });
+}
+
+Application.prototype.find_tracker_from_name = function(name) {
+	return lodash.find(this.trackers, { 'name': name });
+}

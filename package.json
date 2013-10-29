@@ -21,8 +21,8 @@
   "window": {
     "width": 500,
     "height": 240,
-    "toolbar": true,
-    "frame": true,
+    "toolbar": false,
+    "frame": false,
     "resizable": false
   },
   "main": "index.html",
