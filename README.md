@@ -28,12 +28,12 @@ Install steps
 -------------
 
 * Run `npm install`
-* Rename `js/config.js.dist` to `js/config.js` and specify the URL to your redmine website as well as your redmine api key (which you can find by going to `My account` and then on the right under `API access key`, click `Show`).
 
 Usage
 -----
 
 * Run `npm start` to execute/start Redmine Issue Post
+* Click on the gear in the bottom right corner to bring up the configuration window. From there, simply enter the redmine URL and your redmine api key and then use the ESC key to close the window and save the values.
 
 Supported platforms
 -------------------
