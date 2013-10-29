@@ -50,7 +50,6 @@ At runtime, the following are used:
 * [node-webkit][5]
 * [jQuery][6]
 * [Lo-Dash][7]
-* [Chosen][8]
 * [Bootstrap][9]
 
 The following tools are quite important to our development process:
@@ -74,7 +73,6 @@ The code is licensed under the [MIT license][4]. See license.txt.
   [5]: https://github.com/rogerwang/node-webkit
   [6]: http://jquery.com/
   [7]: http://lodash.com/
-  [8]: http://harvesthq.github.io/chosen/
   [9]: http://getbootstrap.com/
   [10]: http://gruntjs.com/
   [11]: https://npmjs.org/package/grunt-contrib-less
