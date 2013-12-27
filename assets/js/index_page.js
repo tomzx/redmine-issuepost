@@ -1,8 +1,69 @@
+var gkm = require('gkm');
+
+var ctrlPressed = false;
+var enterPressed = false;
+gkm.events.on('key.pressed', function(data) {
+	if (data[0] === 'Ctrl') {
+		ctrlPressed = true;
+	}
+	if (data[0] === 'Enter') {
+		enterPressed = true;
+	}
+});
+
+gkm.events.on('key.released', function(data) {
+	var globalShortcutTriggered = false;
+	if (ctrlPressed && enterPressed) {
+		globalShortcutTriggered = true;
+	}
+
+	if (data[0] === 'Ctrl') {
+		ctrlPressed = false;
+	}
+	if (data[0] === 'Enter') {
+		enterPressed = false;
+	}
+
+	if (globalShortcutTriggered && (!ctrlPressed || !enterPressed)) {
+		current_window.toggle();
+		if (current_window.visible) {
+			current_window.focus();
+		}
+	}
+});
+
+var CurrentWindow = function() {
+	this.window = gui.Window.get();
+	this.visible = true;
+};
+
+CurrentWindow.prototype.show = function() {
+	this.visible = true;
+	this.window.show(this.visible);
+}
+
+CurrentWindow.prototype.hide = function() {
+	this.visible = false;
+	this.window.show(this.visible);
+};
+
+CurrentWindow.prototype.toggle = function() {
+	this.visible = !this.visible;
+	this.window.show(this.visible);
+}
+
+CurrentWindow.prototype.focus = function() {
+	this.window.focus();
+}
+
+var current_window = new CurrentWindow();
+
 if (in_node_webkit) {
 	var tray = new gui.Tray({ icon: 'assets/images/tray_icon.png' });
 
 	tray.on('click', function() {
-		gui.Window.get().show();
+		current_window.show();
+		current_window.focus();
 	});
 }
 
@@ -12,6 +73,26 @@ $(document).ready(function() {
 	$('#subject').focus();
 
 	var application = new Application();
+
+	application.on('projects:fetched', function(data) {
+		var projects_name = $.map(data.projects, function(item) {
+			return item.name;
+		});
+
+		$('#project').inlineComplete({
+			terms: projects_name
+		});
+	});
+
+	application.on('trackers:fetched', function(data) {
+		var trackers_name = $.map(data.trackers, function(item) {
+			return item.name;
+		});
+
+		$('#tracker').inlineComplete({
+			terms: trackers_name
+		});
+	});
 
 	application.fetch_projects();
 
@@ -30,8 +111,8 @@ $(document).ready(function() {
 
 		var project = application.find_project_from_name($this.val());
 
-		if (project !== null) {
-			application.fetch_project_tracker(project.identifier);
+		if (project) {
+			application.fetch_project_trackers(project.identifier);
 		}
 	});
 
@@ -72,7 +153,7 @@ $(document).ready(function() {
 	// esc
 	$(window).keydown(function(event) {
 		if (event.keyCode === 27 && in_node_webkit) {
-			gui.Window.get().hide();
+			current_window.hide();
 		}
 	});
 
@@ -89,6 +170,7 @@ $(document).ready(function() {
 	/*if (in_node_webkit) {
 		gui.Window.get().on('blur', function() {
 			this.hide();
+			windowVisible = false;
 		});
 	}*/
 });

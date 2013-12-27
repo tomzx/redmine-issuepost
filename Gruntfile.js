@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt) {
 
 	grunt.initConfig({
@@ -17,9 +19,19 @@ module.exports = function(grunt) {
 				}],
 			},
 		},
+		jshint: {
+			options: {
+				reporter: require('jshint-stylish')
+			},
+			all: {
+				src: [
+					'asset/js/*.js'
+				]
+			}
+		}
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-contrib-watch');
+	require('time-grunt')(grunt);
+	require('load-grunt-tasks')(grunt);
 
 };

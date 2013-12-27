@@ -2,8 +2,15 @@
   "name": "redmine-issuepost",
   "version": "0.1.0",
   "description": "Redmine issue posting client on node-webkit.",
-  "tags": ["redmine", "node-webkit"],
-  "keywords": ["redmine", "rest api", "issue post"],
+  "tags": [
+    "redmine",
+    "node-webkit"
+  ],
+  "keywords": [
+    "redmine",
+    "rest api",
+    "issue post"
+  ],
   "author": "Tom Rochette <roctom@gmail.com>",
   "repository": {
     "type": "git",
@@ -21,21 +28,29 @@
   "window": {
     "width": 500,
     "height": 240,
-    "toolbar": false,
-    "frame": false,
+    "toolbar": true,
+    "frame": true,
     "resizable": false
   },
   "main": "index.html",
   "scripts": {
-    "start": "nodewebkit"
+    "start": "nodewebkit",
+    "test": "grunt jasmine_node"
   },
   "dependencies": {
-    "lodash": "~2.2.1",
-    "nodewebkit": "~0.7.5-3"
+    "lodash": "~2.3.0",
+    "nodewebkit": "~0.8.0",
+    "semver": "~2.2.1",
+    "gkm": "0.0.4"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-less": "~0.6.4",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-less": "~0.8.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-jshint": "~0.7.2",
+    "load-grunt-tasks": "~0.2.0",
+    "jshint-stylish": "~0.1.3",
+    "time-grunt": "~0.2.1",
+    "requirejs": "~2.1.9"
   }
 }

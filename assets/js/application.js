@@ -7,7 +7,13 @@ var Application = function() {
 	this.refresh_config();
 	this.projects = [];
 	this.trackers = [];
+
+	this.events = new Events();
 }
+
+Application.prototype.on = function(eventName, handler) {
+	this.events.on(eventName, handler);
+};
 
 Application.prototype.refresh_config = function() {
 	console.log('Refreshing configuration');
@@ -30,22 +36,11 @@ Application.prototype.fetch_projects = function() {
 		self.projects = data.projects;
 		console.debug(self.projects);
 
-		self.on_project_fetched();
+		self.events.trigger('projects:fetched', { projects: self.projects });
 	});
 };
 
-// TODO: Use jQuery on/trigger mecanism
-Application.prototype.on_project_fetched = function() {
-	var projects = $.map(this.projects, function(item) {
-		return item.name;
-	});
-
-	$('#project').inlineComplete({
-		terms: projects
-	});
-};
-
-Application.prototype.fetch_project_tracker = function(identifier) {
+Application.prototype.fetch_project_trackers = function(identifier) {
 	var self = this;
 
 	console.log('Fetching project trackers');
@@ -59,18 +54,7 @@ Application.prototype.fetch_project_tracker = function(identifier) {
 		self.trackers = data.project.trackers;
 		console.info(self.trackers);
 
-		self.on_project_tracker_fetched();
-	});
-};
-
-// TODO: Use jQuery on/trigger mecanism
-Application.prototype.on_project_tracker_fetched = function() {
-	var trackers = $.map(this.trackers, function(item) {
-		return item.name;
-	});
-
-	$('#tracker').inlineComplete({
-		terms: trackers
+		self.events.trigger('trackers:fetched', { trackers: self.trackers });
 	});
 };
 
