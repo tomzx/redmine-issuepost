@@ -1,2 +1,5 @@
 /node_modules
 assets/js/config.js
+/build
+/cache
+/public/node_modules

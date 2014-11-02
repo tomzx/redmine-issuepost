@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: 'assets/less',
-					dest: 'assets/css',
+					dest: 'public/assets/css',
 					src: ['application.less'],
 					ext: '.css'
 				}],
@@ -28,7 +28,13 @@ module.exports = function(grunt) {
 					'asset/js/*.js'
 				]
 			}
-		}
+		},
+		nodewebkit: {
+			options: {
+				platforms: ['win', 'osx', 'linux32', 'linux64'],
+			},
+			src: ['./public/**/*']
+		},
 	});
 
 	require('time-grunt')(grunt);

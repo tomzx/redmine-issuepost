@@ -1,5 +1,5 @@
 var gkm = require('gkm');
-
+/*
 var ctrlPressed = false;
 var enterPressed = false;
 gkm.events.on('key.pressed', function(data) {
@@ -30,7 +30,7 @@ gkm.events.on('key.released', function(data) {
 			current_window.focus();
 		}
 	}
-});
+});*/
 
 var CurrentWindow = function() {
 	this.window = gui.Window.get();
