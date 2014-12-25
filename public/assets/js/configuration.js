@@ -4,7 +4,7 @@ Configuration.configuration_file = 'config.json';
 
 Configuration.load = function() {
 	if (!fs.existsSync(this.configuration_file)) {
-		this.data = null;
+		this.data = {};
 	} else {
 		var data = fs.readFileSync(this.configuration_file, {encoding: 'utf8'});
 		this.data = JSON.parse(data);

@@ -32,7 +32,7 @@
     "frame": false,
     "resizable": false
   },
-  "main": "index.html",
+  "main": "public/index.html",
   "scripts": {
     "start": "nodewebkit",
     "test": "grunt jasmine_node"
